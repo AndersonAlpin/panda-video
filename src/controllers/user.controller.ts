@@ -8,25 +8,6 @@ const userService = Container.get(UserService);
 
 @Service()
 export default class UserController {
-  async create(req: Request, res: Response) {
-    try {
-      const { error } = userCreateSchema.validate(req.body);
-  
-      if (error) {
-        throw new RequestError(error.details[0].message, 400);
-      }
-
-      const user = await userService.create(req.body);
-      return res.status(201).json(user);
-    } catch (err) {
-      if (err instanceof RequestError) {
-        return res.status(err.statusCode).json({ message: err.message });
-      }
-      console.error(err);
-      return res.status(500).json({ message: 'Internal Server Error' });
-    }
-  }
-
   async findAll(req: Request, res: Response) {
     try {
       const users = await userService.findAll();
