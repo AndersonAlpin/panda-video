@@ -1,3 +1,9 @@
+export interface UserSession {
+  id: number;
+  name: string;
+  email: string;
+}
+
 export interface UserCreateDTO {
   name: string;
   email: string;
