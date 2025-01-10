@@ -7,5 +7,36 @@ services:
       - "3000:3000"
     environment:
       - PORT=3000
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=panda
+      - DB_PASSWORD=Panda123
+      - DB_NAME=panda_video
     volumes:
       - .:/usr/src/app
+    depends_on:
+      - db
+    networks:
+      - panda-video-network
+
+  db:
+    image: postgres:13
+    container_name: panda-video-psql
+    environment:
+      - POSTGRES_USER=panda
+      - POSTGRES_PASSWORD=Panda123
+      - POSTGRES_DB=panda_video
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - panda-video-network
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  panda-video-network:
+    driver: bridge
