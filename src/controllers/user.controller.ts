@@ -1,14 +1,15 @@
-import { Request, Response } from 'express';
-import { userCreateSchema, userUpdateSchema } from '../validations/user.validation';
+import { Response } from 'express';
+import { userUpdateSchema } from '../validations/user.validation';
 import { RequestError } from '../errors/RequestError';
 import Container, { Service } from 'typedi';
 import UserService from '../services/user.service';
+import { CustomRequest } from '../types/express';
 
 const userService = Container.get(UserService);
 
 @Service()
 export default class UserController {
-  async findAll(req: Request, res: Response) {
+  async findAll(req: CustomRequest, res: Response) {
     try {
       const users = await userService.findAll();
       return res.status(200).json(users);
@@ -18,7 +19,7 @@ export default class UserController {
     }
   }
 
-  async findOne(req: Request, res: Response) {
+  async findOne(req: CustomRequest, res: Response) {
     try {
       const { id } = req.params;
       const user = await userService.findOne(Number(id));
@@ -37,7 +38,7 @@ export default class UserController {
     }
   }
 
-  async update(req: Request, res: Response) {
+  async update(req: CustomRequest, res: Response) {
     try {
       const data = {
         ...req.body,
@@ -61,7 +62,7 @@ export default class UserController {
     }
   }
 
-  async delete(req: Request, res: Response) {
+  async delete(req: CustomRequest, res: Response) {
     try {
       const { id } = req.params;
       await userService.delete(Number(id));
