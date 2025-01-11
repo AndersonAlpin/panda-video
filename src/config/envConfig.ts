@@ -18,6 +18,7 @@ interface EnvConfig {
   };
   INTEGRATIONS: {
     PANDA_API_KEY: string;
+    PANDA_API_URL: string;
   };
 }
 
@@ -37,5 +38,6 @@ export const envConfig: EnvConfig = {
   },
   INTEGRATIONS: {
     PANDA_API_KEY: process.env.PANDA_API_KEY || 'panda-6fa580749522c3db80bf85c5d84e84db0d8888a72bac06b79bf50138597b47af',
+    PANDA_API_URL: process.env.PANDA_API_URL || 'https://api-v2.pandavideo.com.br',
   },
 };
