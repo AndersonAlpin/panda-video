@@ -3,14 +3,15 @@ import { UserSession } from '../interfaces/user.interface';
 import jwt from 'jsonwebtoken';
 import UserService from './user.service';
 import { BcryptService } from '../shared/services/bcrypt.service';
+import { envConfig } from '../config/envConfig';
 
 const userService = Container.get(UserService);
 const bcryptService = Container.get(BcryptService);
 
 @Service()
 export class AuthService {
-  private secretKey = process.env.JWT_SECRET || 'defaultSecretKey';
-  private expiresIn = process.env.JWT_EXPIRES_IN || '3h';
+  private secretKey = envConfig.AUTH.JWT_SECRET;
+  private expiresIn = envConfig.AUTH.JWT_EXPIRATION;
 
   generateToken(user: UserSession): string {
     return jwt.sign({ id: user.id, name: user.name, email: user.email }, this.secretKey, {
