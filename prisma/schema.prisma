@@ -10,7 +10,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://panda:Panda123@db:5432/panda_video?schema=public"
 }
 
 model User {
