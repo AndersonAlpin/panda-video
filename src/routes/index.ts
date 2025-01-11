@@ -5,7 +5,7 @@ import pandaIntegrationRouter from './panda-integration.router';
 
 const routes = Router();
 
-routes.get('/sd', (req, res) => {
+routes.get('/', (req, res) => {
   res.send('API is running.');
 });
 
