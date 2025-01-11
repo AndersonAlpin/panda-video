@@ -1,6 +1,7 @@
 import app from './app';
 import dotenv from 'dotenv';
 import { envConfig } from './config/envConfig';
+import "./config/redisConnection";
 
 dotenv.config();
 

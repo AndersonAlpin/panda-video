@@ -16,6 +16,10 @@ interface EnvConfig {
     JWT_SECRET: string;
     JWT_EXPIRATION: string;
   };
+  REDIS: {
+    HOST: string;
+    PORT: number;
+  }
   INTEGRATIONS: {
     PANDA_API_KEY: string;
     PANDA_API_URL: string;
@@ -26,7 +30,7 @@ export const envConfig: EnvConfig = {
   PORT: process.env.PORT || '3000',
   DB: {
     HOST: process.env.DB_HOST || 'localhost',
-    PORT: process.env.DB_PORT || '5433',
+    PORT: process.env.DB_PORT || '5432',
     USER: process.env.DB_USER || 'panda',
     PASSWORD: process.env.DB_PASSWORD || 'Panda123',
     NAME: process.env.DB_NAME || 'panda_video',
@@ -35,6 +39,10 @@ export const envConfig: EnvConfig = {
   AUTH: {
     JWT_SECRET: process.env.JWT_SECRET || 'afd184202f514c87ac2c91f18ecad523',
     JWT_EXPIRATION: process.env.JWT_EXPIRATION || '3h',
+  },
+  REDIS: {
+    HOST: process.env.REDIS_HOST || 'redis',
+    PORT: Number(process.env.REDIS_PORT) || 6379,
   },
   INTEGRATIONS: {
     PANDA_API_KEY: process.env.PANDA_API_KEY || 'panda-6fa580749522c3db80bf85c5d84e84db0d8888a72bac06b79bf50138597b47af',
