@@ -27,7 +27,6 @@
     "ioredis": "^5.4.2",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
-    "prisma": "^6.2.1",
     "reflect-metadata": "^0.2.2",
     "typedi": "^0.10.0"
   },
@@ -42,6 +41,7 @@
     "ioredis-mock": "^8.9.0",
     "jest": "^29.7.0",
     "nodemon": "^3.1.9",
+    "prisma": "^6.2.1",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
