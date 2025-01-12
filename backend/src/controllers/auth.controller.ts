@@ -4,6 +4,7 @@ import { Container, Service } from 'typedi';
 import { userCreateSchema } from '../validations/user.validation';
 import { RequestError } from '../errors/RequestError';
 import UserService from '../services/user.service';
+import { CustomRequest } from '../types/express';
 
 const userService = Container.get(UserService);
 const authService = Container.get(AuthService);
@@ -42,5 +43,10 @@ async signup(req: Request, res: Response) {
       message: 'Login successful',
       token,
     });
+  }
+
+  async session(req: CustomRequest, res: Response) {
+    const user = req.user;
+    res.status(200).json(user);
   }
 }
