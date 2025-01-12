@@ -11,5 +11,6 @@ declare module 'vue' {
     Player: typeof import('./components/Player.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    VideoThumbnail: typeof import('./components/VideoThumbnail.vue')['default']
   }
 }
