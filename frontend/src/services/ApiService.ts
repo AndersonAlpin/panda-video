@@ -80,17 +80,15 @@ class ApiService {
     }
   }
 
-  getErrorMessage(error: unknown): string {
+  getError(error: unknown): { statusCode: number | null; message: string } {
     if (axios.isAxiosError(error)) {
-      if (error.response?.data?.message) {
-        return error.response.data.message;
-      }
-      if (error.message) {
-        return error.message;
-      }
+      const statusCode = error.response?.status || null;
+      const message = error.response?.data?.message || error.message || 'An unexpected error occurred.';
+      return { statusCode, message };
     }
-    return 'An unexpected error occurred.';
-  }
+  
+    return { statusCode: null, message: 'An unexpected error occurred.' };
+  }  
 }
 
 export default new ApiService();
