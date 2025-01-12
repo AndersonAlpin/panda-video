@@ -39,16 +39,10 @@
             <v-btn
               variant="text"
               rounded
-            >
-              Edit Account
-            </v-btn>
-            <v-divider class="my-3" />
-            <v-btn
-              variant="text"
-              rounded
+              class="text-capitalize"
               @click="logout"
             >
-              Disconnect
+              Sair
             </v-btn>
           </div>
         </v-card-text>
