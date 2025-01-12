@@ -1,10 +1,8 @@
 import { envConfig } from '@/config/envConfig';
-import { useAuthStore } from '@/stores/useAuthStore';
 import axios, { type AxiosInstance, type AxiosResponse } from 'axios';
 
 class ApiService {
   private api: AxiosInstance;
-  private authStore = useAuthStore();
 
   constructor() {
     this.api = axios.create({
@@ -16,17 +14,17 @@ class ApiService {
     });
 
     this.api.interceptors.request.use((config) => {
-      const token = this.authStore.token;
-      if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`;
-      } 
+      const localStorageAuth = localStorage.getItem('auth');
+      if (localStorageAuth) {
+        config.headers['Authorization'] = `Bearer ${JSON.parse(localStorageAuth).token}`;
+      }
       return config;
     });
   }
 
   async get<T>(endpoint: string, params?: Record<string, unknown>): Promise<T> {
     try {
-      const response: AxiosResponse<T> = await this.api.get(endpoint, { params });
+      const response: AxiosResponse<T> = await this.api.get(endpoint, { ...params });
       return response.data;
     } catch (error) {
       this.handleError(error);
@@ -82,17 +80,15 @@ class ApiService {
     }
   }
 
-  getErrorMessage(error: unknown): string {
+  getError(error: unknown): { statusCode: number | null; message: string } {
     if (axios.isAxiosError(error)) {
-      if (error.response?.data?.message) {
-        return error.response.data.message;
-      }
-      if (error.message) {
-        return error.message;
-      }
+      const statusCode = error.response?.status || null;
+      const message = error.response?.data?.message || error.message || 'An unexpected error occurred.';
+      return { statusCode, message };
     }
-    return 'An unexpected error occurred.';
-  }
+  
+    return { statusCode: null, message: 'An unexpected error occurred.' };
+  }  
 }
 
 export default new ApiService();

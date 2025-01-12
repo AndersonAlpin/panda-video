@@ -27,6 +27,4 @@ Thumbs.db
 # Test coverage
 coverage/
 
-# Optional: Ignore Docker files
-Dockerfile*
 docker-compose.override.yml

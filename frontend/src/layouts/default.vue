@@ -1,8 +1,6 @@
 <template>
   <v-layout>
-    <v-app-bar>
-      <h1>App Bar</h1>
-    </v-app-bar>
+    <AppBar />
     <v-main>
       <router-view />
     </v-main>

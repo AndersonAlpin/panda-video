@@ -115,7 +115,13 @@ const handleLogin = async () => {
       await authStore.login(email.value, password.value);
       router.push('/');
     } catch (error) {
-      errorMessage.value = ApiService.getErrorMessage(error);
+      const errorData = ApiService.getError(error);
+      
+      if (errorData.statusCode === 401) {
+        errorMessage.value = 'E-mail ou senha inválidos';
+      } else {
+        errorMessage.value = 'Algo deu errado. Tente novamente mais tarde.';
+      }
     }
   }
 
