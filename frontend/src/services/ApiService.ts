@@ -1,10 +1,8 @@
 import { envConfig } from '@/config/envConfig';
-import { useAuthStore } from '@/stores/useAuthStore';
 import axios, { type AxiosInstance, type AxiosResponse } from 'axios';
 
 class ApiService {
   private api: AxiosInstance;
-  private authStore = useAuthStore();
 
   constructor() {
     this.api = axios.create({
@@ -16,10 +14,10 @@ class ApiService {
     });
 
     this.api.interceptors.request.use((config) => {
-      const token = this.authStore.token;
-      if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`;
-      } 
+      const localStorageAuth = localStorage.getItem('auth');
+      if (localStorageAuth) {
+        config.headers['Authorization'] = `Bearer ${JSON.parse(localStorageAuth).token}`;
+      }
       return config;
     });
   }
