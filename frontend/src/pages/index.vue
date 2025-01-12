@@ -16,6 +16,12 @@
 </template>
 
 <script lang="ts" setup>
+definePage({
+  meta: {
+    requiresAuth: true,
+  },
+});
+
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import type { Video } from '@/interfaces/VideoDef';
 import { useVideoStore } from '@/stores/useVideoStore';
