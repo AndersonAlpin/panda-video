@@ -63,7 +63,7 @@ npm run dev
 cd backend
 ```
 
-2. Crie um arquivo .env na raiz do projeto a partir do arquivo .env.example
+2. Crie um arquivo .env na raiz do projeto a partir do arquivo .env.example <br>
 **Valores padrões já estão definidos**
 
 3. Instale as dependências:
