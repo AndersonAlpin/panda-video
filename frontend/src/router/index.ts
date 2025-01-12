@@ -9,16 +9,9 @@ import { createRouter, createWebHistory } from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
 
-const customRoutes = routes.map((route) => {
-  if (route.name === '/Home') {
-    return { ...route, path: '/' }
-  }
-  return route
-});
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: setupLayouts(customRoutes),
+  routes: setupLayouts(routes),
 })
 
 // Workaround for https://github.com/vitejs/vite/issues/11804
