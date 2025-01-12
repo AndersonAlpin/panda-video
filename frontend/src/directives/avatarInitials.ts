@@ -2,7 +2,6 @@ import type { DirectiveBinding } from 'vue';
 
 const avatarInitials = {
   beforeMount(el: HTMLElement, binding: DirectiveBinding) {
-    console.log(binding);
     const fullName = binding.value || '';
     const nameParts = fullName.split(' ');
     const initials = nameParts.slice(0, 2)
