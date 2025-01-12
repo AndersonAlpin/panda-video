@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
 import type { LoginResponse, User } from '@/interfaces/AuthDef';
 import { envConfig } from '@/config/envConfig';
+import ApiService from '@/services/ApiService';
 
 interface AuthState {
   token: string | null;
@@ -16,12 +16,12 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     async login(email: string, password: string) {
       try {
-        const response = await axios.post<LoginResponse>(`${envConfig.PANDA_BACKEND_URL}/auth/login`, {
+        const data = await ApiService.post<LoginResponse>('/auth/login', {
           email,
           password,
         });
 
-        this.token = response.data.token;
+        this.token = data.token;
         
         await this.fetchUserSession();
       } catch (error) {
@@ -33,13 +33,13 @@ export const useAuthStore = defineStore('auth', {
     async fetchUserSession() {
       if (this.token) {
         try {
-          const response = await axios.get<User>(`${envConfig.PANDA_BACKEND_URL}/auth/session`, {
+          const data = await ApiService.get<User>(`${envConfig.PANDA_BACKEND_URL}/auth/session`, {
             headers: {
               Authorization: `Bearer ${this.token}`,
             },
           });
 
-          this.user = response.data;
+          this.user = data;
         } catch (error) {
           console.error('Failed to fetch user data:', error);
         }
