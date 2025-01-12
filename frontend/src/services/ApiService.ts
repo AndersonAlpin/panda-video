@@ -24,7 +24,7 @@ class ApiService {
 
   async get<T>(endpoint: string, params?: Record<string, unknown>): Promise<T> {
     try {
-      const response: AxiosResponse<T> = await this.api.get(endpoint, { params });
+      const response: AxiosResponse<T> = await this.api.get(endpoint, { ...params });
       return response.data;
     } catch (error) {
       this.handleError(error);
