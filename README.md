@@ -25,6 +25,10 @@ O projeto **Panda Video** é composto por um **Frontend** desenvolvido com Vue.j
 
 ## Como Rodar
 
+#### Usuário Padrão
+**email**: admin@gmail.com
+**senha**: 1234
+
 **Clone este repositório para sua máquina local:**
 ```bash
 git clone https://github.com/AndersonAlpin/panda-video.git
