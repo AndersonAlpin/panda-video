@@ -20,6 +20,17 @@ class ApiService {
       }
       return config;
     });
+
+    this.api.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (axios.isAxiosError(error) && error.response?.status === 401) {
+          localStorage.removeItem('auth');
+          window.location.href = '/login';
+        }
+        return Promise.reject(error);
+      }
+    );
   }
 
   async get<T>(endpoint: string, params?: Record<string, unknown>): Promise<T> {
