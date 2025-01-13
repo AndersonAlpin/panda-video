@@ -8,7 +8,8 @@ COPY package*.json ./
 COPY prisma ./prisma/
 
 # Instala apenas as dependências
-RUN npm ci --only=production
+# RUN npm ci --only=production
+RUN npm ci
 
 # Copia o restante do código e executa a build
 COPY . .
