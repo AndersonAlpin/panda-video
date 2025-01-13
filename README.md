@@ -26,7 +26,7 @@ O projeto **Panda Video** é composto por um **Frontend** desenvolvido com Vue.j
 ## Como Rodar
 
 #### Usuário Padrão
-**email**: admin@gmail.com
+**email**: admin@gmail.com <br>
 **senha**: 1234
 
 **Clone este repositório para sua máquina local:**
